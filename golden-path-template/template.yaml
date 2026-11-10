@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: golden-path-nodejs
-  title: Golden Path - Node.js Service
+  name: appian-handoff-construccion
+  title: Appian Handoff Construccion
   description: Crea un microservicio Node.js con CI/CD y registro en catálogo Backstage
   tags:
     - golden-path
