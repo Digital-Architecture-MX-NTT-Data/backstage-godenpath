@@ -9,7 +9,7 @@ metadata:
     - nodejs
     - microservice
 spec:
-  owner: group:default/platform-team
+  owner: group:default/arquitectura
   type: service
 
   parameters:
@@ -58,7 +58,7 @@ spec:
           spec:
             type: service
             lifecycle: ${{ parameters.lifecycle }}
-            owner: group:default/platform-team
+            owner: group:default/arquitectura
 
     - id: publish
       name: Publicar en GitHub
