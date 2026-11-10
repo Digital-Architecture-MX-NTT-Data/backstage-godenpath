@@ -53,7 +53,7 @@ spec:
             name: ${{ parameters.name }}
             description: ${{ parameters.description }}
             annotations:
-              github.com/project-slug: Digital-Architecture-MX-NTT-Data/${{ parameters.name }}
+              github.com/project-slug: adelgonz/${{ parameters.name }}
               profuturo.mx/layer: experience
           spec:
             type: service
@@ -64,7 +64,7 @@ spec:
       name: Publicar en GitHub
       action: publish:github
       input:
-        repoUrl: github.com?repo=${{ parameters.name }}&owner=Digital-Architecture-MX-NTT-Data
+        repoUrl: github.com?repo=${{ parameters.name }}&owner=adelgonz
         description: ${{ parameters.description }}
         repoVisibility: private
         defaultBranch: main
