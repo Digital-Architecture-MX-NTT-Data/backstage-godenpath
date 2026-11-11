@@ -1,0 +1,88 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: appian-project-scaffold
+  title: Appian Project Scaffold
+  description: Crea un repositorio Appian con rúbricas de calidad, skill references y contexto para agentes IA
+  tags:
+    - golden-path
+    - appian
+    - scaffold
+spec:
+  owner: group:default/arquitectura
+  type: service
+
+  parameters:
+    - title: Información del proyecto
+      required:
+        - name
+        - description
+        - owner
+        - repoUrl
+      properties:
+        name:
+          title: Nombre del proyecto
+          type: string
+          description: Nombre en kebab-case (ej. ms-afiliacion-appian)
+          pattern: '^[a-z][a-z0-9-]*$'
+        title:
+          title: Título legible
+          type: string
+          description: Nombre descriptivo del proyecto
+        description:
+          title: Descripción
+          type: string
+        owner:
+          title: Equipo dueño
+          type: string
+          description: Grupo responsable (ej. group:default/arquitectura)
+          default: group:default/arquitectura
+        lifecycle:
+          title: Ciclo de vida
+          type: string
+          enum: [experimental, production, deprecated]
+          default: experimental
+        repoUrl:
+          title: Repositorio GitHub
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+
+  steps:
+    - id: fetch-template
+      name: Generar estructura del proyecto
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+          title: ${{ parameters.title }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          lifecycle: ${{ parameters.lifecycle }}
+
+    - id: publish
+      name: Publicar en GitHub
+      action: publish:github
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        description: ${{ parameters.description }}
+        repoVisibility: private
+        defaultBranch: main
+
+    - id: register
+      name: Registrar en catálogo Backstage
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+
+  output:
+    links:
+      - title: Repositorio GitHub
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Ver en catálogo
+        icon: catalog
+        entityRef: component:default/${{ parameters.name }}

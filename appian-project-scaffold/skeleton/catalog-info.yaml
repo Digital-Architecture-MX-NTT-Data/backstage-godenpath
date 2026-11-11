@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name }}
+  title: ${{ values.title }}
+  description: ${{ values.description }}
+  annotations:
+    github.com/project-slug: edzero01/${{ values.name }}
+    backstage.io/source-location: url:https://github.com/edzero01/${{ values.name }}
+  tags:
+    - appian
+    - profuturo
+spec:
+  type: service
+  lifecycle: ${{ values.lifecycle }}
+  owner: ${{ values.owner }}
