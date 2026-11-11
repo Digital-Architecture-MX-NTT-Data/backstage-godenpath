@@ -55,7 +55,7 @@ spec:
       name: Generar estructura del proyecto
       action: fetch:template
       input:
-        url: ./skeleton
+        url: https://github.com/Digital-Architecture-MX-NTT-Data/backstage-godenpath/tree/main/appian-project-scaffold/skeleton
         values:
           name: ${{ parameters.name }}
           title: ${{ parameters.title }}
