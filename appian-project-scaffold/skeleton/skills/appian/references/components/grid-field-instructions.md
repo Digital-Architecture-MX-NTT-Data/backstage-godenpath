@@ -129,7 +129,7 @@ a!gridField(
 )
 ```
 
-**Conversion Details:** The converter will transform custom search/filter UX to built-in grid features. See `/conversion-guidelines/display-conversion-grids.md` `{#display-grids.search-filter}` for:
+**Conversion Details:** The converter will transform custom search/filter UX to built-in grid features. See `/conversion-guidelines/display-conversion-grids.md` `[display-grids.search-filter]` for:
 - 4-step conversion process (inventory, match, apply decision matrix)
 - Decision tree: when to convert vs keep custom UX
 - User filter types (list filters, date range filters)
